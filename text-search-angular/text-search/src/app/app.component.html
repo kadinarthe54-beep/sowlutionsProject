@@ -1,0 +1,41 @@
+<header>
+  <h1>bitsofcode</h1>
+</header>
+
+<div class="container">
+  <div class="main">
+
+    <h2>Search</h2>
+
+    <div class="search-box">
+      <input type="text" [(ngModel)]="query" (input)="onSearch()" placeholder="Search articles..." />
+      <button (click)="clear()">&#x2715;</button>
+    </div>
+
+    <p class="count" *ngIf="searched">
+      <strong>{{ results.length }} posts</strong> were found.
+    </p>
+
+    <p class="no-results" *ngIf="searched && results.length === 0">
+      No posts found for "{{ query }}".
+    </p>
+
+    <div class="article" *ngFor="let article of results">
+      <h3 [innerHTML]="highlight(article.title)"></h3>
+      <p class="date">{{ article.date }}</p>
+      <p [innerHTML]="highlight(article.content)"></p>
+    </div>
+
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebar-box">
+      <strong>bitsofcode.</strong> Articles on Frontend Development.
+      All articles are written by <a href="#">Ire Aderinokun</a>,
+      Frontend Developer and User Interface Designer.
+      <br/><br/>
+      <span class="twitter-btn">Follow @ireaderinokun</span>
+      <span class="followers">19.1K followers</span>
+    </div>
+  </div>
+</div>
